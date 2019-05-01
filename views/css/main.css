@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    width: 50vw;
+    margin: 1rem auto;
+    background-color: antiquewhite;
+    border: 1px double black;
+    padding: 1.25rem;
+    /* text-align: center; */
+}
+
+.reg-form{
+    width: 80%;
+    margin: auto;
+}
+
+.reg-form h1{
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid black;
+}
+
+
+
+.reg-form label{
+    display: block;
+    font-weight: 700;
+}
+
+.reg-form input, button {
+    display: block;
+    margin : .8rem 0;
+    width: 100%;
+    border-radius: 5px;
+    padding: .5rem .25rem;
+}
