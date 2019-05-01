@@ -68,4 +68,17 @@ class FileManipulation
         }
         return false;
     }
+
+    /**
+     * Indicates whether the database table was exists  or not
+     *
+     * @return bool
+     */
+    public function dbTableIndicator():bool{
+        $content = file_get_contents($this->filename);
+        $array = json_decode($content, true);
+        $array['dbtable'] = "exists";
+        $indicator = $this->createConfigFile($array);
+        return $indicator;
+    }
 }

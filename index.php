@@ -1,4 +1,5 @@
 <?php
+
 //Store the project root directory path and url
 $root_dir = __DIR__;
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
