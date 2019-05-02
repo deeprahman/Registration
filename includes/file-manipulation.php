@@ -10,15 +10,16 @@ if(isset($_POST['db_info'])) {
     $db_array['port'] = isset($_POST['port']) ? filter_input(INPUT_POST, 'port', FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null;
     $db_array['username'] = isset($_POST['db_username']) ? filter_input(INPUT_POST, 'db_username', FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null;
     $db_array['password'] = isset($_POST['db_password']) ? filter_input(INPUT_POST, 'db_password', FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null;
-
+    $fn->createConfigFile($db_array);
 }
+//Display the Database Info from if the config.json is not exist
 if(!file_exists($filename)){
     header("location:./views/dbinfo.html");
 }
 
 $update = $fn->dbTableIndicator();
 if($update){
-    echo "updated";
+    echo "updated<br>";
 }else{
-    echo "not updated";
+    echo "not updated<br>";
 }

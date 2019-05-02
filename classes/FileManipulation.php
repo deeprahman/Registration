@@ -77,7 +77,7 @@ class FileManipulation
     public function dbTableIndicator():bool{
         $content = file_get_contents($this->filename);
         $array = json_decode($content, true);
-        $array['dbtable'] = "exists";
+        $array['table'] = "dr_reg";
         $indicator = $this->createConfigFile($array);
         return $indicator;
     }

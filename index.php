@@ -10,6 +10,6 @@ require_once $root_dir."/classes/DatabaseManipulation.php";
 
 //Check the config.json file
 require_once $root_dir."./includes/file-manipulation.php";
-
+require_once $root_dir."./includes/db_manipulation.php";
 //Display the registration form
 //header("location:./views/index.html");
