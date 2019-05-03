@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Database Information</title>
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
+<?php require $root_dir."/views/header.html.php"?>
 <div class="container">
-    <form class="reg-form" action="../" method="post">
+    <form class="reg-form" action="<?= $actual_link?>" method="post">
         <h1>Database Information</h1>
         <div class="frm-text">
             <label for="input-hostname">hostname:</label>
@@ -35,5 +28,4 @@
         </div>
     </form>
 </div>
-</body>
-</html>
+<?php require $root_dir."/views/footer.html.php"?>

@@ -59,7 +59,7 @@ class DatabaseManipulation
     private function databaseInfo(string $filename):void {
         $json_data = file_get_contents($filename);
         $db_info_array = json_decode($json_data, true);
-        $host=& $db_info_array['hostname'];
+        $host=& $db_info_array['host'];
         $dbname =& $db_info_array['database'];
         $port =& $db_info_array['port'];
         $username =& $db_info_array['username'];
@@ -112,17 +112,21 @@ EOL;
         return $table_exists;
      }
 
-     /**
-      * Create table
-      */
+    /**
+     * Create table
+     *
+     * @return bool
+     */
      public function createTable():bool{
          $table = "dr_reg";
          $sql = <<<EOL
 CREATE TABLE {$table}(
   reg_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(50) NOT NULL,
+  username VARCHAR(50) NOT NULL UNIQUE,
   user_pass VARCHAR(255) NOT NULL,
-  email VARCHAR(50) NOT NULL
+  email VARCHAR(50) NOT NULL UNIQUE,
+  ip VARCHAR(30) NOT NULL,
+  reg_date TIMESTAMP
 )DEFAULT CHARACTER SET utf8 ENGINE=InnoDB;
 EOL;
         $db =& $this->pdo;
@@ -135,4 +139,68 @@ EOL;
         $table_exists = $this->checkTable();
         return $table_exists;
      }
+
+    /**
+     * Submit Data to the database
+     *
+     * @param array $data   key-value pair
+     * @return bool
+     */
+     public function submitData(array &$data):bool{
+         $db = $this->pdo;
+         $col_name = [];
+         $values=[];
+         $prep = [];
+         foreach($data as $heading => $value){
+             array_push($col_name,$heading);
+             array_push($values,$value);
+             $prep[] = "?";
+         }
+        $col_name = implode(",",$col_name);
+        $prep = implode(",",$prep);
+
+         $insert = <<<EOL
+INSERT INTO {$this->table_name}({$col_name}) VALUES ({$prep});
+EOL;
+        try{
+           $prepared = $db->prepare($insert);
+           $prepared->execute($values);
+
+        }catch(\PDOException $ex){
+            exit($ex->getMessage());
+        }
+        return true;
+
+     }
+
+    /**
+     * Fetch Data From the Table
+     *
+     * @param array $col_head   Column names
+     * @param string $where_clause  Where clause of the SQL statement
+     * @return \PDOStatement
+     */
+     public function fetchData(array $col_head, string $where_clause = ""):\PDOStatement {
+         $heading = implode(",",$col_head);
+         $table =& $this->table_name;
+         $db = $this->pdo;
+         if(empty($where_clause)){
+             $select = <<<EOL
+SELECT {$heading} FROM {$table};
+EOL;
+         }else{
+             $select = <<<EOL
+SELECT {$heading} FROM {$table} WHERE {$where_clause};
+EOL;
+         }
+        try{
+           $results = $db->query($select);
+           $results = $results->fetch();
+        }catch(\PDOException $ex){
+             exit($ex->getMessage());
+        }
+         return $results;
+     }
+
+
 }

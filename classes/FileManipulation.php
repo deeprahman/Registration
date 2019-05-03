@@ -24,7 +24,7 @@ class FileManipulation
     function checkForTable():bool {
         $contents = file_get_contents($this->filename);
         $array = json_decode($contents, true);
-        if(isset($array['dbtable'])){
+        if(isset($array['table'])){
             return true;
         }
         return false;
@@ -49,6 +49,7 @@ class FileManipulation
                 $iteration++;
             }
         }
+
         return ($base_bit === $true_value)?true:false;
     }
 
