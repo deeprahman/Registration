@@ -71,14 +71,15 @@ class FileManipulation
     }
 
     /**
-     * Indicates whether the database table was exists  or not
+     * Update the json file with "table":"table-name"
      *
+     * @param string $table_name
      * @return bool
      */
-    public function dbTableIndicator():bool{
+    public function jsonUpdate_table(string $table_name):bool{
         $content = file_get_contents($this->filename);
         $array = json_decode($content, true);
-        $array['table'] = "dr_reg";
+        $array['table'] = $table_name;
         $indicator = $this->createConfigFile($array);
         return $indicator;
     }

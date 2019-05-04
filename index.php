@@ -2,13 +2,17 @@
 
 //Store the project root directory path and url
 $root_dir = __DIR__;
-$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+
 $filename = "config.json";
+$table_name = "dr_reg";
 //Include the classes;
 require_once $root_dir."/classes/FileManipulation.php";
 require_once $root_dir."/classes/DatabaseManipulation.php";
 require_once $root_dir."/classes/User_IP_Address.php";
 require_once $root_dir."/classes/Authentication.php";
+require_once $root_dir."/classes/DateTimeCheck.php";
+
 
 
 //When the submit button of the Database information form is clicked- get the information cand create the config.json

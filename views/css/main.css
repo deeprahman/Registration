@@ -1,13 +1,14 @@
 *{
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    border-radius:5px;
 }
 
 .container{
     width: 50vw;
     margin: 1rem auto;
-    background-color: antiquewhite;
-    border: 1px double black;
+    background-color: #30c15e;
+    border: 2px solid #3CB371;
     padding: 1.25rem;
     /* text-align: center; */
 }
@@ -19,9 +20,14 @@
 
 .reg-form h1{
     text-align: center;
+    font-size:40px;
+    font-style: italic;
+    text-shadow: 3px 3px forestgreen;
+        
+    color:cornsilk;
     margin-bottom: 3rem;
     padding-bottom: .5rem;
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid #F7F9FB;
 }
 
 
@@ -29,12 +35,38 @@
 .reg-form label{
     display: block;
     font-weight: 700;
+    color:cornsilk;
+    font-size: 22px;
 }
 
-.reg-form input, button {
+.reg-form input {
     display: block;
     margin : .8rem 0;
+    border-color: lightgreen;
     width: 100%;
     border-radius: 5px;
     padding: .5rem .25rem;
+    
+    font-size:15px;
+    font-style: normal;
+    font-weight:bold;
+}
+
+
+.reg-form button{
+    display: block;
+    margin: .8rem 0;
+    border-color:lightgreen;
+    width:30%;
+    border-radius: 8px;
+    padding:.3rem 0;
+    color:forestgreen;
+    font-size:20px;
+    font-style:normal;
+    font-weight:bold;
+    margin-left: 180px;
+}
+.reg-form button:hover{
+    color:grey;
+    cursor:pointer;
 }

@@ -117,8 +117,8 @@ EOL;
      *
      * @return bool
      */
-     public function createTable():bool{
-         $table = "dr_reg";
+     public function createTable(string $table_name):bool{
+         $table = $table_name;
          $sql = <<<EOL
 CREATE TABLE {$table}(
   reg_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -176,11 +176,11 @@ EOL;
     /**
      * Fetch Data From the Table
      *
-     * @param array $col_head   Column names
-     * @param string $where_clause  Where clause of the SQL statement
-     * @return \PDOStatement
+     * @param array $col_head
+     * @param string $where_clause
+     * @return false|mixed|\PDOStatement
      */
-     public function fetchData(array $col_head, string $where_clause = ""):\PDOStatement {
+     public function fetchData(array $col_head, string $where_clause = "") {
          $heading = implode(",",$col_head);
          $table =& $this->table_name;
          $db = $this->pdo;
@@ -202,5 +202,39 @@ EOL;
          return $results;
      }
 
+    /**
+     * Fetch data given where condition
+     *
+     * @param string $col_head
+     * @param string $value
+     * @return false|mixed|\PDOStatement
+     */
+     public function fetchWhereColHead(string $col_head,string $value){
+         $where = <<<EOL
+{$col_head}='{$value}'
+EOL;
+       //Convert string to array
+         $array_col_head[]=$col_head;
+         $results = $this->fetchData($array_col_head,$where);
+         return $results;
+     }
+
+    /**
+     * Fetch the registration time for a given IP
+     *
+     * @param string $col_head
+     * @param string $where_head
+     * @param string $where_value
+     * @return false|mixed|\PDOStatement
+     */
+    public function fetchTimeForIp(string $col_head,string $where_head, string $where_value){
+        $where = <<<EOL
+{$where_head}='{$where_value}'
+EOL;
+        //Convert string to array
+        $array_col_head[]=$col_head;
+        $results = $this->fetchData($array_col_head,$where);
+        return $results;
+    }
 
 }

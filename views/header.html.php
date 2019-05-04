@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registration</title>
-    <link rel="stylesheet" href="<?=$actual_link."/views/css/main.css"?>">
+    <link rel="stylesheet" href="<?=$actual_link.'/registration/views/css/main.css'?>">
+    <script src="<?= $actual_link.'/registration/views/js/jquery-3.4.1.js'?>"></script>
+    <script src="<?= $actual_link.'/registration/views/js/main.js'?>"></script>
 </head>
 <body>

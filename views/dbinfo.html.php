@@ -1,6 +1,6 @@
 <?php require $root_dir."/views/header.html.php"?>
 <div class="container">
-    <form class="reg-form" action="<?= $actual_link?>" method="post">
+    <form class="reg-form" action="<?= $actual_link.'/registration/index.php'?>" method="post">
         <h1>Database Information</h1>
         <div class="frm-text">
             <label for="input-hostname">hostname:</label>
